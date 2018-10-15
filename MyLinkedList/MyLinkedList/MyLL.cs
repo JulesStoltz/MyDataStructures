@@ -206,5 +206,17 @@ namespace MyLinkedList
             this.Size--;
             return data;
         }
+
+        /// <summary>Removes last item from list and returns its value.</summary>
+        /// <returns>Returns Data value of item at the end of the list.</returns>
+        public T PopEnd() // Time: O(1), Space: O(1)
+        {
+            if (this.Size == 0) { throw new NullReferenceException(); }
+            T data = this.Tail.Data;
+            if (this.Tail == this.Head) { this.Head = null; this.Tail = null; }
+            else { this.Tail = this.Tail.Prev; this.Tail.Next = null; }
+            this.Size--;
+            return data;
+        }
     }
 }
