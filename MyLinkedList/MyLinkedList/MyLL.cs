@@ -48,5 +48,13 @@ namespace MyLinkedList
         /// <summary>Retrieves size (number of nodes) of linked list.</summary>
         /// <returns>Returns an int.</returns>
         public int GetSize() { return this.Size; }
+
+        /// <summary>Retrieves data value of head node.</summary>
+        /// <returns>Returns node type (T).</returns>
+        public T GetHeadData() { return this.Head.Data; }
+
+        /// <summary>Retrieves data value of tail node.</summary>
+        /// <returns>Returns node type (T).</returns>
+        public T GetTailData() { return this.Tail.Data; }
     }
 }
