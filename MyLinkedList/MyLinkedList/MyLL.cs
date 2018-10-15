@@ -51,10 +51,18 @@ namespace MyLinkedList
 
         /// <summary>Retrieves data value of head node.</summary>
         /// <returns>Returns node type (T).</returns>
-        public T GetHeadData() { return this.Head.Data; }
+        public T GetHeadData()
+        {
+            if (this.Size > 0) { return this.Head.Data; }
+            else { throw new NullReferenceException(); }
+        }
 
         /// <summary>Retrieves data value of tail node.</summary>
         /// <returns>Returns node type (T).</returns>
-        public T GetTailData() { return this.Tail.Data; }
+        public T GetTailData()
+        {
+            if (this.Size > 0) { return this.Tail.Data; }
+            else { throw new NullReferenceException(); }
+        }
     }
 }

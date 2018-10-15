@@ -25,7 +25,7 @@ namespace MyLinkedListUT
             var expect = (int)1;
             var actual = ll.GetSize();
             Assert.AreEqual(expect, actual);
-            // Head and Tail of 1 node list should be the same node
+            // CAUTION: Head and Tail of 1 node list should be the same node, not just equivalent value
             Assert.AreEqual(ll.GetHeadData(), ll.GetTailData());
         }
 
@@ -40,6 +40,20 @@ namespace MyLinkedListUT
             Assert.AreEqual(expect, actual);
         }
 
-        
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestGetHeadDataNullValue()
+        {
+            MyLL<string> ll = new MyLL<string>();
+            var errata = ll.GetHeadData();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestGetTailDataNullValue()
+        {
+            MyLL<string> ll = new MyLL<string>();
+            var errata = ll.GetTailData();
+        }
     }
 }
