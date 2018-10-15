@@ -100,5 +100,30 @@ namespace MyLinkedList
             else { this.Head.Prev = node; node.Next = this.Head; this.Head = node; }
             this.Size++;
         }
+
+        /// <summary>Adds newData after the first occurence of data found.</summary>
+        /// <param name="data">Type of 'data' must agree with list type.</param>
+        /// <param name="newData">Type of 'data' must agree with list type.</param>
+        public void AddAfter(T data, T newData) // Time: O(N), Space: O(1)
+        {
+            Node<T> target = new Node<T>(data);
+            Node<T> current = this.Head;
+            while (current.Next != null && !current.Equals(target))
+            {
+                current = current.Next;
+            }
+            if (!current.Equals(target)) { throw new ArgumentException("Item not found."); }
+            if (current.Next == null) { AddAtEnd(newData); }
+            else
+            {
+                Node<T> node = new Node<T>(newData);
+                current.Next.Prev = node;
+                node.Next = current.Next;
+                node.Prev = current;
+                current.Next = node;
+
+                this.Size++;
+            }
+        }
     }
 }

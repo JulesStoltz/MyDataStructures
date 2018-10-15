@@ -123,5 +123,25 @@ namespace MyLinkedListUT
             var actual = ll.ToString();
             Assert.AreEqual(expect, actual);
         }
+
+        [TestMethod]
+        public void TestAddAfterDataPresent()
+        {
+            int[] intArray = { 1, 2, 3 };
+            MyLL<int> ll = new MyLL<int>(intArray);
+            ll.AddAfter(2, 4);
+            var expect = "1, 2, 4, 3";
+            var actual = ll.ToString();
+            Assert.AreEqual(expect, actual);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestAddAfterDataNotPresent()
+        {
+            int[] intArray = { 1, 2, 3 };
+            MyLL<int> ll = new MyLL<int>(intArray);
+            ll.AddAfter(4, 2);
+        }
     }
 }
