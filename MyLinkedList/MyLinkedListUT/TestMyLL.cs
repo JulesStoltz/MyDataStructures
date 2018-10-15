@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MyLinkedList;
 
 namespace MyLinkedListUT
 {
@@ -7,8 +8,12 @@ namespace MyLinkedListUT
     public class TestMyLL
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestGetSizeEmptyList()
         {
+            MyLL<int> ll = new MyLL<int>();
+            var expect = (int)0;
+            var actual = ll.GetSize();
+            Assert.AreEqual(expect, actual);
         }
     }
 }
