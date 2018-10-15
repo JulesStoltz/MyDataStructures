@@ -209,5 +209,34 @@ namespace MyLinkedListUT
             var actual = lla.ToString();
             Assert.AreEqual(expect, actual);
         }
+
+        [TestMethod]
+        public void TestDeleteIndexPresent()
+        {
+            int[] intArray = { 1, 2, 3 };
+            MyLL<int> ll = new MyLL<int>(intArray);
+            ll.DeleteIndex(1);
+            var expect = "1, 3";
+            var actual = ll.ToString();
+            Assert.AreEqual(expect, actual);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(IndexOutOfRangeException))]
+        public void TestDeleteIndexOutOfRangeNegative()
+        {
+            int[] intArray = { 1, 2, 3 };
+            MyLL<int> ll = new MyLL<int>(intArray);
+            ll.DeleteIndex(-1);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(IndexOutOfRangeException))]
+        public void TestDeleteIndexOutOfRangePositive()
+        {
+            int[] intArray = { 1, 2, 3 };
+            MyLL<int> ll = new MyLL<int>(intArray);
+            ll.DeleteIndex(3);
+        }
     }
 }

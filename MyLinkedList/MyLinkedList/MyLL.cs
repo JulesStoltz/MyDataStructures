@@ -173,5 +173,26 @@ namespace MyLinkedList
             }
             return this;
         }
+
+        /// <summary>Deletes item found at index.</summary>
+        /// <param name="index">Standard index values (first item is index 0).</param>
+        public void DeleteIndex(int index) // Time: O(N), Space: O(1)
+        {
+            if (index < 0) { throw new IndexOutOfRangeException("Index cannot be negative."); }
+            Node<T> current = this.Head;
+            for (int i = 0; i < index; i++)
+            {
+                if (current.Next != null)
+                {
+                    current = current.Next;
+                }
+                else { throw new IndexOutOfRangeException(); }
+            }
+            current.Next.Prev = current.Prev;
+            current.Prev.Next = current.Next;
+            current = null;
+            this.Size--;
+
+        }
     }
 }
