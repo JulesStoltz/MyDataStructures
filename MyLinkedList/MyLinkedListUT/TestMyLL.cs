@@ -74,5 +74,14 @@ namespace MyLinkedListUT
             var actual = ll.ToString();
             Assert.AreEqual(expect, actual);
         }
+
+        [TestMethod]
+        public void TestToStringOverrideEmptyList()
+        {
+            MyLL<int> ll = new MyLL<int>();
+            var expect = "";
+            var actual = ll.ToString();
+            Assert.AreEqual(expect, actual);
+        }
     }
 }
