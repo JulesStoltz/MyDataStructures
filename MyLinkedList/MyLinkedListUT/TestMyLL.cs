@@ -55,5 +55,14 @@ namespace MyLinkedListUT
             MyLL<string> ll = new MyLL<string>();
             var errata = ll.GetTailData();
         }
+
+        [TestMethod]
+        public void TestNodeDataLinkedListValue()
+        {
+            MyLL<int> llinner = new MyLL<int>(1);
+            MyLL<MyLL<int>> llouter = new MyLL<MyLL<int>>(llinner);
+            var actual = llouter.GetHeadData();
+            Assert.IsInstanceOfType(actual, llinner.GetType());
+        }
     }
 }
