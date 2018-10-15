@@ -194,5 +194,17 @@ namespace MyLinkedList
             this.Size--;
 
         }
+
+        /// <summary>Removes first item from list and returns its value.</summary>
+        /// <returns>Returns Data value of item at the front of the list.</returns>
+        public T PopFront() // Time: O(1), Space: O(1)
+        {
+            if (this.Size == 0) { throw new NullReferenceException(); }
+            T data = this.Head.Data;
+            if (this.Head.Next == null) { this.Head = null; this.Tail = null; }
+            else { this.Head.Next.Prev = null; this.Head = this.Head.Next; }
+            this.Size--;
+            return data;
+        }
     }
 }

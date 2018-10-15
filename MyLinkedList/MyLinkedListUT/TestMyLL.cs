@@ -238,5 +238,23 @@ namespace MyLinkedListUT
             MyLL<int> ll = new MyLL<int>(intArray);
             ll.DeleteIndex(3);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestPopFrontEmptyList()
+        {
+            MyLL<int> ll = new MyLL<int>();
+            var errata = ll.PopFront();
+        }
+
+        [TestMethod]
+        public void TestPopFrontNonEmptyList()
+        {
+            int[] intArray = { 1, 2, 3 };
+            MyLL<int> ll = new MyLL<int>(intArray);
+            var expect = 1;
+            var actual = ll.PopFront();
+            Assert.AreEqual(expect, actual);
+        }
     }
 }
