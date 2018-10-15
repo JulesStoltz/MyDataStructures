@@ -125,5 +125,28 @@ namespace MyLinkedList
                 this.Size++;
             }
         }
+
+        /// <summary>Adds newItem before the first occurence of anyItem.</summary>
+        /// <param name="data">Type of 'data' must agree with list type.</param>
+        /// <param name="newData">Type of 'data' must agree with list type.</param>
+        public void AddBefore(T data, T newData) // Time: O(N), Space: O(1)
+        {
+            Node<T> target = new Node<T>(data);
+            Node<T> current = this.Head;
+            while (current.Next != null && !current.Equals(target))
+            {
+                current = current.Next;
+            }
+            if (!current.Equals(target)) { throw new ArgumentException("Item not found."); }
+            if (current == this.Head) { AddAtFront(newData); }
+            else
+            {
+                Node<T> node = new Node<T>(newData);
+                current.Prev.Next = node;
+                node.Next = current;
+                current.Prev = node;
+                this.Size++;
+            }
+        }
     }
 }
