@@ -148,5 +148,30 @@ namespace MyLinkedList
                 this.Size++;
             }
         }
+
+        /// <summary>Appends aList onto the end of this list.</summary>
+        /// <param name="aList">Type of aList must agree with type of this list.</param>
+        /// <returns>Returns a MyLL list (type T).</returns>
+        public MyLL<T> Append(MyLL<T> aList) // Time: O(1), Space: O(1)
+        {
+            
+            if ((this.Size == 0 && aList.Size == 0) || (aList.Size == 0)) { }
+            else if (this.Size == 0)
+            {
+                this.Size = aList.Size;
+                this.Head = aList.Head;
+                this.Tail = aList.Tail;
+            }
+            else
+            {
+                this.Size = this.Size + aList.Size;
+                this.Tail.Next = aList.Head;
+                aList.Head.Prev = this.Tail;
+                this.Tail = aList.Tail;
+                this.Tail.Prev = aList.Tail.Prev;
+                aList = null;
+            }
+            return this;
+        }
     }
 }

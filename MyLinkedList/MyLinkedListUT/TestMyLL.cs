@@ -163,5 +163,51 @@ namespace MyLinkedListUT
             MyLL<int> ll = new MyLL<int>(intArray);
             ll.AddBefore(4, 2);
         }
+
+        [TestMethod]
+        public void TestAppendEmptyToEmpty()
+        {
+            MyLL<int> lla = new MyLL<int>();
+            MyLL<int> llb = new MyLL<int>();
+            lla.Append(llb);
+            var expect = 0;
+            var actual = lla.GetSize();
+            Assert.AreEqual(expect, actual);
+        }
+
+        [TestMethod]
+        public void TestAppendEmptyToNonEmpty()
+        {
+            MyLL<int> lla = new MyLL<int>();
+            MyLL<int> llb = new MyLL<int>(1);
+            lla.Append(llb);
+            var expect = "1";
+            var actual = lla.ToString();
+            Assert.AreEqual(expect, actual);
+        }
+
+        [TestMethod]
+        public void TestAppendNonEmptyToEmpty()
+        {
+            MyLL<int> lla = new MyLL<int>(1);
+            MyLL<int> llb = new MyLL<int>();
+            lla.Append(llb);
+            var expect = "1";
+            var actual = lla.ToString();
+            Assert.AreEqual(expect, actual);
+        }
+
+        [TestMethod]
+        public void TestAppendNonEmptyToNonEmpty()
+        {
+            int[] intsA = { 1, 2 };
+            int[] intsB = { 3, 4 };
+            MyLL<int> lla = new MyLL<int>(intsA);
+            MyLL<int> llb = new MyLL<int>(intsB);
+            lla.Append(llb);
+            var expect = "1, 2, 3, 4";
+            var actual = lla.ToString();
+            Assert.AreEqual(expect, actual);
+        }
     }
 }
