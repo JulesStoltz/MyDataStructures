@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace MyLinkedList
 {
@@ -63,6 +64,30 @@ namespace MyLinkedList
         {
             if (this.Size > 0) { return this.Tail.Data; }
             else { throw new NullReferenceException(); }
+        }
+
+        /// <summary>Creates list as a string.</summary>
+        /// <returns>Returns string.</returns>
+        public override string ToString() // Time: O(N), Space: O(N)
+        {
+            Node<T> current = this.Head;
+            StringBuilder sb = new StringBuilder();
+            int count = 0;
+            while (current != null)
+            {
+                if (current.Next != null)
+                {
+                    sb.Append(current.Data.ToString() + ", ");
+                    current = current.Next;
+                }
+                else
+                {
+                    sb.Append(current.Data.ToString());
+                    break;
+                }
+                count++;
+            }
+            return sb.ToString();
         }
     }
 }

@@ -64,5 +64,15 @@ namespace MyLinkedListUT
             var actual = llouter.GetHeadData();
             Assert.IsInstanceOfType(actual, llinner.GetType());
         }
+
+        [TestMethod]
+        public void TestToStringOverride()
+        {
+            int[] intArray = { 1, 2, 3 };
+            MyLL<int> ll = new MyLL<int>(intArray);
+            var expect = "1, 2, 3";
+            var actual = ll.ToString();
+            Assert.AreEqual(expect, actual);
+        }
     }
 }
