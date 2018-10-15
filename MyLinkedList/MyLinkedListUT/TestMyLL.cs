@@ -26,5 +26,18 @@ namespace MyLinkedListUT
             var actual = ll.GetSize();
             Assert.AreEqual(expect, actual);
         }
+
+        [TestMethod]
+        public void TestGetSizeMultipleNodeList()
+        {
+            // Doubles as test of Multiple Data Constructor
+            int[] intArray = { 1,2,3 };
+            MyLL<int> ll = new MyLL<int>(intArray);
+            var expect = (int)3;
+            var actual = ll.GetSize();
+            Assert.AreEqual(expect, actual);
+        }
+
+        // Head and Tail of 1 node list should be the same node
     }
 }

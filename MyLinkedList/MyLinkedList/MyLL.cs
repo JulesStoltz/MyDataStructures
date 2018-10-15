@@ -31,8 +31,17 @@ namespace MyLinkedList
 
         // Constructors
         public MyLL() { }
-        public MyLL(T data) { this.Head = new Node<T>(data); this.Size++; }
-        public MyLL(T[] data) { }
+        public MyLL(T data) : this(new T[] { data }) { }
+        public MyLL(T[] data)
+        {
+            foreach(T item in data)
+            {
+                Node<T> node = new Node<T>(item);
+                if (this.Size == 0) { this.Head = node; this.Tail = node; }
+                else { this.Tail.Next = node; node.Prev = this.Tail; this.Tail = node; }
+                this.Size++;
+            }
+        }
 
         // Methods
 
