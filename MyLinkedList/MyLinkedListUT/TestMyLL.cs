@@ -83,5 +83,25 @@ namespace MyLinkedListUT
             var actual = ll.ToString();
             Assert.AreEqual(expect, actual);
         }
+
+        [TestMethod]
+        public void TestAddAtEndToEmptyList()
+        {
+            MyLL<int> ll = new MyLL<int>();
+            var expect = "1";
+            ll.AddAtEnd(1);
+            var actual = ll.ToString();
+            Assert.AreEqual(expect, actual);
+        }
+
+        [TestMethod]
+        public void TestAddAtEndToNonEmptyList()
+        {
+            MyLL<int> ll = new MyLL<int>(1);
+            var expect = "1, 2";
+            ll.AddAtEnd(2);
+            var actual = ll.ToString();
+            Assert.AreEqual(expect, actual);
+        }
     }
 }

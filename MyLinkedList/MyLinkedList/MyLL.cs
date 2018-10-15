@@ -33,16 +33,7 @@ namespace MyLinkedList
         // Constructors
         public MyLL() { }
         public MyLL(T data) : this(new T[] { data }) { }
-        public MyLL(T[] data)
-        {
-            foreach(T item in data)
-            {
-                Node<T> node = new Node<T>(item);
-                if (this.Size == 0) { this.Head = node; this.Tail = node; }
-                else { this.Tail.Next = node; node.Prev = this.Tail; this.Tail = node; }
-                this.Size++;
-            }
-        }
+        public MyLL(T[] data) { foreach(T item in data) { AddAtEnd(item); } }
 
         // Methods
 
@@ -88,6 +79,16 @@ namespace MyLinkedList
                 count++;
             }
             return sb.ToString();
+        }
+
+        /// <summary>Adds data item to the end of the list.</summary>
+        /// <param name="data">Type of 'data' must agree with list type.</param>
+        public void AddAtEnd(T data) // Time: O(1), Space: O(1)
+        {
+            Node<T> node = new Node<T>(data);
+            if (this.Size == 0) { this.Head = node; this.Tail = node; }
+            else { this.Tail.Next = node; node.Prev = this.Tail; this.Tail = node; }
+            this.Size++;
         }
     }
 }
