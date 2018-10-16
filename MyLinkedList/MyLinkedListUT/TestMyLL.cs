@@ -274,5 +274,45 @@ namespace MyLinkedListUT
             var actual = ll.PopEnd();
             Assert.AreEqual(expect, actual);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestPopAfterDataNotPresent()
+        {
+            int[] intArray = { 1, 2, 3 };
+            MyLL<int> ll = new MyLL<int>(intArray);
+            ll.PopAfter(4);
+        }
+
+        [TestMethod]
+        public void TestPopAfterDataPresentItemAfterPresent()
+        {
+            int[] intArray = { 1, 2, 3 };
+            MyLL<int> ll = new MyLL<int>(intArray);
+            ll.PopAfter(1);
+            var expect = "1, 3";
+            var actual = ll.ToString();
+            Assert.AreEqual(expect, actual);
+        }
+
+        [TestMethod]
+        public void TestPopAfterDataPresentItemAfterPresentLastItem()
+        {
+            int[] intArray = { 1, 2, 3 };
+            MyLL<int> ll = new MyLL<int>(intArray);
+            ll.PopAfter(2);
+            var expect = "1, 2";
+            var actual = ll.ToString();
+            Assert.AreEqual(expect, actual);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestPopAfterDataPresentItemAfterNotPresent()
+        {
+            int[] intArray = { 1, 2, 3 };
+            MyLL<int> ll = new MyLL<int>(intArray);
+            ll.PopAfter(3);
+        }
     }
 }

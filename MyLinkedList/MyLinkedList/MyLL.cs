@@ -218,5 +218,36 @@ namespace MyLinkedList
             this.Size--;
             return data;
         }
+
+        /// <summary>Removes from list item after data given and returns its value.</summary>
+        /// <param name="data">Type of 'data' must agree with list type.</param>
+        /// <returns>Returns value of the item after the data given.</returns>
+        public T PopAfter(T data)  // Time: O(N), Space: O(1)
+        {
+            Node<T> target = new Node<T>(data);
+            Node<T> current = this.Head;
+            while (current.Next != null && !current.Equals(target))
+            {
+                current = current.Next;
+            }
+            if (!current.Equals(target)) { throw new ArgumentException("Item not found."); }
+            if (current.Next == null) { throw new ArgumentException("No item after given item."); }
+            else
+            {
+                T returnData = current.Next.Data;
+                if (current.Next.Next != null)
+                {
+                    current.Next = current.Next.Next;
+                    current.Next.Prev = current;
+                }
+                else
+                {
+                    this.Tail = current;
+                    current.Next = null;
+                }
+                this.Size--;
+                return returnData;
+            }
+        }
     }
 }
