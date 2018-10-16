@@ -19,7 +19,7 @@ namespace MyLinkedList
 
             public Node(T data) { Data = data; }
 
-            public bool Equals(Node<T> obj)
+            public bool EqualsNode(Node<T> obj)
             {
                 return Data.Equals(obj.Data);
             }
@@ -63,20 +63,18 @@ namespace MyLinkedList
         {
             Node<T> current = this.Head;
             StringBuilder sb = new StringBuilder();
-            int count = 0;
             while (current != null)
             {
                 if (current.Next != null)
                 {
-                    sb.Append(current.Data.ToString() + ", ");
+                    sb.Append(current.ToString() + ", ");
                     current = current.Next;
                 }
                 else
                 {
-                    sb.Append(current.Data.ToString());
+                    sb.Append(current.ToString());
                     break;
                 }
-                count++;
             }
             return sb.ToString();
         }
@@ -108,11 +106,11 @@ namespace MyLinkedList
         {
             Node<T> target = new Node<T>(data);
             Node<T> current = this.Head;
-            while (current.Next != null && !current.Equals(target))
+            while (current.Next != null && !current.EqualsNode(target))
             {
                 current = current.Next;
             }
-            if (!current.Equals(target)) { throw new ArgumentException("Item not found."); }
+            if (!current.EqualsNode(target)) { throw new ArgumentException("Item not found."); }
             if (current.Next == null) { AddAtEnd(newData); }
             else
             {
@@ -126,18 +124,18 @@ namespace MyLinkedList
             }
         }
 
-        /// <summary>Adds newItem before the first occurence of anyItem.</summary>
+        /// <summary>Adds newData before the first occurence of data found.</summary>
         /// <param name="data">Type of 'data' must agree with list type.</param>
         /// <param name="newData">Type of 'data' must agree with list type.</param>
         public void AddBefore(T data, T newData) // Time: O(N), Space: O(1)
         {
             Node<T> target = new Node<T>(data);
             Node<T> current = this.Head;
-            while (current.Next != null && !current.Equals(target))
+            while (current.Next != null && !current.EqualsNode(target))
             {
                 current = current.Next;
             }
-            if (!current.Equals(target)) { throw new ArgumentException("Item not found."); }
+            if (!current.EqualsNode(target)) { throw new ArgumentException("Item not found."); }
             if (current == this.Head) { AddAtFront(newData); }
             else
             {
@@ -168,7 +166,6 @@ namespace MyLinkedList
                 this.Tail.Next = aList.Head;
                 aList.Head.Prev = this.Tail;
                 this.Tail = aList.Tail;
-                this.Tail.Prev = aList.Tail.Prev;
                 aList = null;
             }
             return this;
@@ -222,15 +219,15 @@ namespace MyLinkedList
         /// <summary>Removes from list item after data given and returns its value.</summary>
         /// <param name="data">Type of 'data' must agree with list type.</param>
         /// <returns>Returns value of the item after the data given.</returns>
-        public T PopAfter(T data)  // Time: O(N), Space: O(1)
+        public T RemoveAfter(T data)  // Time: O(N), Space: O(1)
         {
             Node<T> target = new Node<T>(data);
             Node<T> current = this.Head;
-            while (current.Next != null && !current.Equals(target))
+            while (current.Next != null && !current.EqualsNode(target))
             {
                 current = current.Next;
             }
-            if (!current.Equals(target)) { throw new ArgumentException("Item not found."); }
+            if (!current.EqualsNode(target)) { throw new ArgumentException("Item not found."); }
             if (current.Next == null) { throw new ArgumentException("No item after given item."); }
             else
             {
@@ -253,15 +250,15 @@ namespace MyLinkedList
         /// <summary>Removes from list item before data given and returns its value.</summary>
         /// <param name="data">Type of 'data' must agree with list type.</param>
         /// <returns>Returns value of the item before the data given.</returns>
-        public T PopBefore(T data) // Time: O(N), Space: O(1)
+        public T RemoveBefore(T data) // Time: O(N), Space: O(1)
         {
             Node<T> target = new Node<T>(data);
             Node<T> current = this.Head;
-            while (current.Next != null && !current.Equals(target))
+            while (current.Next != null && !current.EqualsNode(target))
             {
                 current = current.Next;
             }
-            if (!current.Equals(target)) { throw new ArgumentException("Item not found."); }
+            if (!current.EqualsNode(target)) { throw new ArgumentException("Item not found."); }
             if (current.Prev == null) { throw new ArgumentException("No item before given item."); }
             else
             {

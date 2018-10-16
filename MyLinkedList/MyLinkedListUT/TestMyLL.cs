@@ -277,30 +277,30 @@ namespace MyLinkedListUT
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void TestPopAfterDataNotPresent()
+        public void TestRemoveAfterDataNotPresent()
         {
             int[] intArray = { 1, 2, 3 };
             MyLL<int> ll = new MyLL<int>(intArray);
-            ll.PopAfter(4);
+            ll.RemoveAfter(4);
         }
 
         [TestMethod]
-        public void TestPopAfterDataPresentItemAfterPresent()
+        public void TestRemoveAfterDataPresentItemAfterPresent()
         {
             int[] intArray = { 1, 2, 3 };
             MyLL<int> ll = new MyLL<int>(intArray);
-            ll.PopAfter(1);
+            ll.RemoveAfter(1);
             var expect = "1, 3";
             var actual = ll.ToString();
             Assert.AreEqual(expect, actual);
         }
 
         [TestMethod]
-        public void TestPopAfterDataPresentItemAfterPresentLastItem()
+        public void TestRemoveAfterDataPresentItemAfterPresentLastItem()
         {
             int[] intArray = { 1, 2, 3 };
             MyLL<int> ll = new MyLL<int>(intArray);
-            ll.PopAfter(2);
+            ll.RemoveAfter(2);
             var expect = "1, 2";
             var actual = ll.ToString();
             Assert.AreEqual(expect, actual);
@@ -308,39 +308,39 @@ namespace MyLinkedListUT
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void TestPopAfterDataPresentItemAfterNotPresent()
+        public void TestRemoveAfterDataPresentItemAfterNotPresent()
         {
             int[] intArray = { 1, 2, 3 };
             MyLL<int> ll = new MyLL<int>(intArray);
-            ll.PopAfter(3);
+            ll.RemoveAfter(3);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void TestPopBeforeDataNotPresent()
+        public void TestRemoveBeforeDataNotPresent()
         {
             int[] intArray = { 1, 2, 3 };
             MyLL<int> ll = new MyLL<int>(intArray);
-            ll.PopBefore(4);
+            ll.RemoveBefore(4);
         }
 
         [TestMethod]
-        public void TestPopBeforeDataPresentItemBeforePresent()
+        public void TestRemoveBeforeDataPresentItemBeforePresent()
         {
             int[] intArray = { 1, 2, 3 };
             MyLL<int> ll = new MyLL<int>(intArray);
-            ll.PopBefore(3);
+            ll.RemoveBefore(3);
             var expect = "1, 3";
             var actual = ll.ToString();
             Assert.AreEqual(expect, actual);
         }
 
         [TestMethod]
-        public void TestPopBeforeDataPresentItemBeforePresentFirstItem()
+        public void TestRemoveBeforeDataPresentItemBeforePresentFirstItem()
         {
             int[] intArray = { 1, 2, 3 };
             MyLL<int> ll = new MyLL<int>(intArray);
-            ll.PopBefore(2);
+            ll.RemoveBefore(2);
             var expect = "2, 3";
             var actual = ll.ToString();
             Assert.AreEqual(expect, actual);
@@ -348,11 +348,11 @@ namespace MyLinkedListUT
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void TestPopBeforeDataPresentItemBeforeNotPresent()
+        public void TestRemoveBeforeDataPresentItemBeforeNotPresent()
         {
             int[] intArray = { 1, 2, 3 };
             MyLL<int> ll = new MyLL<int>(intArray);
-            ll.PopBefore(1);
+            ll.RemoveBefore(1);
         }
     }
 }
