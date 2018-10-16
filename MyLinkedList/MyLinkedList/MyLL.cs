@@ -249,5 +249,36 @@ namespace MyLinkedList
                 return returnData;
             }
         }
+
+        /// <summary>Removes from list item before data given and returns its value.</summary>
+        /// <param name="data">Type of 'data' must agree with list type.</param>
+        /// <returns>Returns value of the item before the data given.</returns>
+        public T PopBefore(T data) // Time: O(N), Space: O(1)
+        {
+            Node<T> target = new Node<T>(data);
+            Node<T> current = this.Head;
+            while (current.Next != null && !current.Equals(target))
+            {
+                current = current.Next;
+            }
+            if (!current.Equals(target)) { throw new ArgumentException("Item not found."); }
+            if (current.Prev == null) { throw new ArgumentException("No item before given item."); }
+            else
+            {
+                T returnData = current.Prev.Data;
+                if (current.Prev.Prev != null)
+                {
+                    current.Prev = current.Prev.Prev;
+                    current.Prev.Next = current;
+                }
+                else
+                {
+                    this.Head = current;
+                    current.Prev = null;
+                }
+                this.Size--;
+                return returnData;
+            }
+        }
     }
 }

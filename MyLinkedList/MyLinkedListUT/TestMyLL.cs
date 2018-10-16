@@ -314,5 +314,45 @@ namespace MyLinkedListUT
             MyLL<int> ll = new MyLL<int>(intArray);
             ll.PopAfter(3);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestPopBeforeDataNotPresent()
+        {
+            int[] intArray = { 1, 2, 3 };
+            MyLL<int> ll = new MyLL<int>(intArray);
+            ll.PopBefore(4);
+        }
+
+        [TestMethod]
+        public void TestPopBeforeDataPresentItemBeforePresent()
+        {
+            int[] intArray = { 1, 2, 3 };
+            MyLL<int> ll = new MyLL<int>(intArray);
+            ll.PopBefore(3);
+            var expect = "1, 3";
+            var actual = ll.ToString();
+            Assert.AreEqual(expect, actual);
+        }
+
+        [TestMethod]
+        public void TestPopBeforeDataPresentItemBeforePresentFirstItem()
+        {
+            int[] intArray = { 1, 2, 3 };
+            MyLL<int> ll = new MyLL<int>(intArray);
+            ll.PopBefore(2);
+            var expect = "2, 3";
+            var actual = ll.ToString();
+            Assert.AreEqual(expect, actual);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestPopBeforeDataPresentItemBeforeNotPresent()
+        {
+            int[] intArray = { 1, 2, 3 };
+            MyLL<int> ll = new MyLL<int>(intArray);
+            ll.PopBefore(1);
+        }
     }
 }
